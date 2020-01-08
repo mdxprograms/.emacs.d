@@ -62,7 +62,8 @@
     "q" 'kill-current-buffer
     "gs" 'magit-status
     "<SPC>" (lambda() (interactive)(find-file "~/.emacs.d/init.el"))
-    "TAB" 'mode-line-other-buffer))
+    "TAB" 'mode-line-other-buffer
+    "t" 'treemacs))
 
 (use-package magit
   :ensure t)
@@ -100,6 +101,12 @@
   :ensure t)
 
 (use-package projectile
+  :ensure t)
+
+(use-package treemacs
+  :ensure t)
+
+(use-package treemacs-evil
   :ensure t)
 
 ;; new snippets in ~/.emacs.d/snippets
