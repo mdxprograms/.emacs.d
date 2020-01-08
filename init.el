@@ -68,50 +68,50 @@
   :ensure t)
 
 (use-package evil-magit
-	     :ensure t)
+  :ensure t)
 
 (use-package elpy
-	     :ensure t
+  :ensure t
   :config
   (elpy-enable)
   (setq elpy-modules (delq 'eplpy-module-flymake elpy-modules)))
 
 (use-package flycheck
-	     :ensure t
+  :ensure t
   :config
   (add-hook 'elpy-mode-hook 'flycheck-mode))
 
 (use-package py-autopep8
-	     :ensure t
+  :ensure t
   :config
   (add-hook 'elpy-mode-hook 'py-autopep8-enable-on-save))
 
 (use-package blacken
-	     :ensure t)
+  :ensure t)
 
 (use-package pipenv
-	     :ensure t
+  :ensure t
   :hook (python-mode . pipenv-mode)
   :init
   (setq pipenv-projectile-after-switch-function
-	#'pipenv-projectile-after-switch-extended))
+        #'pipenv-projectile-after-switch-extended))
 
 (use-package pyvenv
-	     :ensure t)
+  :ensure t)
 
 (use-package projectile
-	     :ensure t)
+  :ensure t)
 
 ;; new snippets in ~/.emacs.d/snippets
 (use-package yasnippet
-	     :ensure t
+  :ensure t
   :config
   (yas-global-mode 1))
 
 (use-package yasnippet-snippets
-	     :ensure t)
+  :ensure t)
 
 (use-package dracula-theme
-	     :ensure t
+  :ensure t
   :config
   (load-theme 'dracula t))
