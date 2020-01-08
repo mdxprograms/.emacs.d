@@ -41,6 +41,11 @@
 (use-package all-the-icons
   :ensure t)
 
+(use-package autopair
+  :ensure t
+  :config
+  (autopair-global-mode))
+
 (use-package exec-path-from-shell
   :ensure t
   :config
@@ -120,6 +125,11 @@
   :ensure t
   :config
   (projectile-mode 1))
+
+(use-package rainbow-delimiters
+  :ensure t
+  :config
+  (add-hook 'prog-mode-hook #'rainbow-delimiters-mode))
 
 (use-package treemacs
   :ensure t)
