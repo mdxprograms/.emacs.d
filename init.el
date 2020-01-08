@@ -17,6 +17,8 @@
 
 (setq default-frame-alist initial-frame-alist)
 
+(setq default-frame-alist '((font . "Hack-13")))
+
 (set-language-environment "UTF-8")
 (set-default-coding-systems 'utf-8-unix)
 
@@ -57,7 +59,9 @@
   (global-evil-leader-mode)
   (evil-leader/set-leader "<SPC>")
   (evil-leader/set-key
-    "f" 'projectile-find-file
+    "f" 'helm-projectile-find-file
+    "r" 'helm-buffers-list
+    "p" 'helm-projectile-switch-project
     "w" 'save-buffer
     "q" 'kill-current-buffer
     "gs" 'magit-status
@@ -100,13 +104,26 @@
 (use-package pyvenv
   :ensure t)
 
-(use-package projectile
+(use-package helm
+  :ensure t
+  :config
+  (helm-mode 1))
+
+(use-package helm-projectile
   :ensure t)
+
+(use-package projectile
+  :ensure t
+  :config
+  (projectile-mode 1))
 
 (use-package treemacs
   :ensure t)
 
 (use-package treemacs-evil
+  :ensure t)
+
+(use-package treemacs-projectile
   :ensure t)
 
 ;; new snippets in ~/.emacs.d/snippets
