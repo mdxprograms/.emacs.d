@@ -1,3 +1,12 @@
+(package-initialize)
+(require 'package)
+(add-to-list 'package-archives
+    '("melpa" . "http://melpa.milkbox.net/packages/") t)
+
+(dolist (package '(use-package))
+   (unless (package-installed-p package)
+     (package-install package)))
+
 (setq inhibit-startup-screen t)
 
 (if (display-graphic-p)
@@ -11,25 +20,25 @@
 (set-language-environment "UTF-8")
 (set-default-coding-systems 'utf-8-unix)
 
-(setq make-backup-files nil)
-(setq create-lockfiles nil)
-(setq auto-save-default nil)
-(setq ring-bell-function 'ignore)
+(setq-default
+ auto-save-default nil
+ create-lockfiles nil
+ custom-file "~/.emacs.d/.custom.el"
+ history-length 1000
+ indent-tabs-mode nil
+ make-backup-files nil
+ python-shell-interpreter "python3"
+ ring-bell-function 'ignore
+ truncate-lines t)
 
 (column-number-mode 1)
 (linum-mode t)
+(global-hl-line-mode 1)
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; Install and setup packages;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(package-initialize)
-(require 'package)
-(add-to-list 'package-archives
-    '("melpa" . "http://melpa.milkbox.net/packages/") t)
-
-(dolist (package '(use-package))
-   (unless (package-installed-p package)
-     (package-install package)))
+(use-package exec-path-from-shell
+  :ensure t
+  :config
+  (exec-path-from-shell-initialize))
 
 (use-package evil
   :ensure t
@@ -51,30 +60,58 @@
     "f" 'find-file
     "w" 'save-buffer
     "q" 'kill-current-buffer
-    "gs" 'magit-status))
+    "gs" 'magit-status
+    "<SPC>" (lambda() (interactive)(find-file "~/.emacs.d/init.el"))
+    "TAB" 'mode-line-other-buffer))
 
 (use-package magit
   :ensure t)
 
 (use-package evil-magit
-  :ensure t)
+	     :ensure t)
+
+(use-package elpy
+	     :ensure t
+  :config
+  (elpy-enable)
+  (setq elpy-modules (delq 'eplpy-module-flymake elpy-modules)))
+
+(use-package flycheck
+	     :ensure t
+  :config
+  (add-hook 'elpy-mode-hook 'flycheck-mode))
+
+(use-package py-autopep8
+	     :ensure t
+  :config
+  (add-hook 'elpy-mode-hook 'py-autopep8-enable-on-save))
+
+(use-package blacken
+	     :ensure t)
+
+(use-package pipenv
+	     :ensure t
+  :hook (python-mode . pipenv-mode)
+  :init
+  (setq pipenv-projectile-after-switch-function
+	#'pipenv-projectile-after-switch-extended))
+
+(use-package pyvenv
+	     :ensure t)
+
+(use-package projectile
+	     :ensure t)
+
+;; new snippets in ~/.emacs.d/snippets
+(use-package yasnippet
+	     :ensure t
+  :config
+  (yas-global-mode 1))
+
+(use-package yasnippet-snippets
+	     :ensure t)
 
 (use-package dracula-theme
-  :ensure t
+	     :ensure t
   :config
   (load-theme 'dracula t))
-
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(package-selected-packages
-   (quote
-    (evil-magit magit dracula-theme evil-escape evil-leader evil use-package))))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
