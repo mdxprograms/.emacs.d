@@ -57,7 +57,7 @@
   (global-evil-leader-mode)
   (evil-leader/set-leader "<SPC>")
   (evil-leader/set-key
-    "f" 'find-file
+    "f" 'projectile-find-file
     "w" 'save-buffer
     "q" 'kill-current-buffer
     "gs" 'magit-status
