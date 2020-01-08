@@ -29,13 +29,14 @@
  history-length 1000
  indent-tabs-mode nil
  make-backup-files nil
- python-shell-interpreter "python3"
  ring-bell-function 'ignore
  truncate-lines t)
 
 (column-number-mode 1)
-(linum-mode t)
 (global-hl-line-mode 1)
+(global-display-line-numbers-mode)
+
+(setq python-shell-interpreter "python3")
 
 (use-package exec-path-from-shell
   :ensure t
