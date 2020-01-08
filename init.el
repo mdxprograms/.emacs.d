@@ -38,6 +38,9 @@
 
 (setq python-shell-interpreter "python3")
 
+(use-package all-the-icons
+  :ensure t)
+
 (use-package exec-path-from-shell
   :ensure t
   :config
