@@ -86,8 +86,9 @@
 
 (use-package elpy
   :ensure t
-  :config
+  :init
   (elpy-enable)
+  :config
   (setq elpy-modules (delq 'eplpy-module-flymake elpy-modules)))
 
 (use-package flycheck
@@ -109,9 +110,6 @@
   :init
   (setq pipenv-projectile-after-switch-function
         #'pipenv-projectile-after-switch-extended))
-
-(use-package pyvenv
-  :ensure t)
 
 (use-package helm
   :ensure t
