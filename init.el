@@ -9,13 +9,9 @@
 
 (setq inhibit-startup-screen t)
 
-(if (display-graphic-p)
-    (setq initial-frame-alist
-	  '(
-	    (tool-bar-lines . 0)))
-  (setq initial-frame-alist '((tool-bar-lines . 0))))
-
-(setq default-frame-alist initial-frame-alist)
+(menu-bar-mode -1)
+(toggle-scroll-bar -1)
+(tool-bar-mode -1)
 
 (setq default-frame-alist '((font . "Hack-13")))
 
@@ -76,7 +72,8 @@
     "gs" 'magit-status
     "<SPC>" (lambda() (interactive)(find-file "~/.emacs.d/init.el"))
     "TAB" 'mode-line-other-buffer
-    "t" 'treemacs))
+    "t" 'treemacs
+    "d" 'dired-helm))
 
 (use-package magit
   :ensure t)
