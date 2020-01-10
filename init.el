@@ -28,11 +28,15 @@
  ring-bell-function 'ignore
  truncate-lines t)
 
+(setq create-lockfiles nil)
+
 (column-number-mode 1)
 (global-hl-line-mode 1)
 (global-display-line-numbers-mode)
 
 (setq python-shell-interpreter "python3")
+
+(setq js-indent-level 2)
 
 (use-package all-the-icons
   :ensure t)
@@ -41,6 +45,15 @@
   :ensure t
   :config
   (autopair-global-mode))
+
+(use-package clojure-mode
+  :ensure t)
+
+(use-package clojure-mode-extra-font-locking
+  :ensure t)
+
+(use-package cider
+  :ensure t)
 
 (use-package exec-path-from-shell
   :ensure t
@@ -134,6 +147,14 @@
 
 (use-package treemacs-projectile
   :ensure t)
+
+(use-package web-mode
+  :ensure t
+  :config
+  (defun my-web-mode-hook ()
+    "hooks for web mode"
+    (setq web-mode-markup-indent-offset 2))
+  (add-hook 'web-mode-hook 'my-web-mode-hook))
 
 ;; new snippets in ~/.emacs.d/snippets
 (use-package yasnippet
