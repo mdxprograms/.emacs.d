@@ -6,11 +6,6 @@
 ;;; settings
 
 ;;; packages
-(use-package company-tern
-  :ensure t
-  :config
-  (setq tern-command (append tern-command '("--no-port-file"))))
-
 (use-package company-web
   :ensure t
   :init
@@ -58,12 +53,10 @@
   :ensure t
   :mode ("\\.js$" . rjsx-mode)
   :config
-  (add-to-list 'company-backends 'company-tern)
   (add-hook 'rjsx-mode-hook
             (lambda ()
               (setq indent-tabs-mode nil)
-              (setq js-indent-level 2)
-              (tern-mode))))
+              (setq js-indent-level 2))))
 
 (use-package scss-mode
   :ensure t
