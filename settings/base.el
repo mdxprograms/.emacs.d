@@ -95,7 +95,8 @@
     "<SPC>" (lambda() (interactive)(find-file "~/.emacs.d/init.el"))
     "TAB" 'mode-line-other-buffer
     "t" 'treemacs
-    "d" 'dired-helm))
+    "d" 'dired-helm
+    "n" 'other-window))
 
 (use-package evil-magit
   :ensure t)
@@ -115,9 +116,8 @@
 (use-package git-gutter
   :ensure t
   :config
-  (global-git-gutter-mode)
-  (git-gutter:linum-setup)
-  (setq git-gutter:window-width 2))
+  (global-git-gutter-mode t)
+  (git-gutter:linum-setup))
 
 (use-package helm
   :ensure t
