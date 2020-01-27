@@ -76,8 +76,7 @@
                         (setq web-mode-markup-indent-offset 2)
                         (setq web-mode-style-padding 2)
                         (setq web-mode-script-padding 2)
-                        (set (make-local-variable 'company-backends) '(company-web-html))
-                        (hl-tags-mode)))))
+                        (set (make-local-variable 'company-backends) '(company-web-html))))))
 
 (use-package yaml-mode
   :ensure t)
