@@ -39,6 +39,9 @@
               (make-local-variable 'js-indent-level)
               (setq js-indent-level 2))))
 
+(use-package php-mode
+  :ensure t)
+
 (use-package pug-mode
   :ensure t
   :config
