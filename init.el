@@ -15,4 +15,5 @@
 (require 'ruby)
 (require 'clojure)
 (require 'web)
+(require 'hs)
 
