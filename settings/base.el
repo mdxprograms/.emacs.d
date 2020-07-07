@@ -35,6 +35,10 @@
 (global-hl-line-mode 1)
 (global-display-line-numbers-mode)
 
+;; lsp settings
+(setq read-process-output-max (* 1024 1024)) ;; 1mb
+(setq lsp-prefer-capf t)
+
 ;;; packages
 (use-package all-the-icons
   :ensure t)
@@ -54,7 +58,12 @@
   :diminish
   :config
   (add-hook 'after-init-hook 'global-company-mode)
-  (setq company-idle-delay 0))
+  (setq company-idle-delay 0.0
+        company-minimum-prefix-length 1))
+
+(use-package doom-modeline
+  :ensure t
+  :init (doom-modeline-mode 1))
 
 (use-package dracula-theme
   :ensure t
@@ -111,6 +120,9 @@
                 (append flycheck-disabled-checkers
                         '(javascript-jshint))))
 
+(use-package format-all
+  :ensure t)
+
 (use-package git-gutter
   :ensure t
   :config
@@ -120,6 +132,10 @@
   :ensure t
   :config
   (helm-mode 1))
+
+(use-package helm-lsp
+  :ensure t
+  :commands helm-lsp-workspace-symbol)
 
 (use-package helm-projectile
   :ensure t)
@@ -131,6 +147,15 @@
   :ensure t
   :init
   (indent-guide-global-mode))
+
+(use-package lsp-mode
+  :ensure t
+  :commands (lsp-deferred))
+
+(use-package lsp-treemacs
+  :commands lsp-treemacs-errors-list
+  :config
+  (lsp-treemacs-sync-mode 1))
 
 (use-package magit
   :ensure t)

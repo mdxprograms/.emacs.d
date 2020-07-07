@@ -39,18 +39,13 @@
               (make-local-variable 'js-indent-level)
               (setq js-indent-level 2))))
 
-(use-package php-mode
+(use-package npm
   :ensure t)
 
 (use-package pug-mode
   :ensure t
   :config
   (setq pug-tab-width 2))
-
-(use-package prettier-js
-  :ensure t
-  :config
-  (add-hook 'rjsx-mode-hook 'prettier-js-mode))
 
 (use-package rjsx-mode
   :ensure t
