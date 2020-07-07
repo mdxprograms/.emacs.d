@@ -11,7 +11,7 @@
 (toggle-scroll-bar -1)
 (tool-bar-mode -1)
 
-(setq default-frame-alist '((font . "Hack-13")))
+(setq default-frame-alist '((font . "Hack-12")))
 
 (set-charset-priority 'unicode)
 (setq locale-coding-system   'utf-8)
@@ -30,8 +30,6 @@
  make-backup-files nil
  ring-bell-function 'ignore
  truncate-lines t)
-
-(setq create-lockfiles nil)
 
 (column-number-mode 1)
 (global-hl-line-mode 1)
@@ -126,6 +124,14 @@
 (use-package helm-projectile
   :ensure t)
 
+(use-package helm-swoop
+  :ensure t)
+
+(use-package indent-guide
+  :ensure t
+  :init
+  (indent-guide-global-mode))
+
 (use-package magit
   :ensure t)
 
@@ -147,6 +153,9 @@
     (setq-default save-place t)
     (setq save-place-limit nil)))
 
+(use-package smex
+  :ensure t)
+
 (use-package treemacs
   :ensure t)
 
@@ -156,7 +165,6 @@
 (use-package treemacs-projectile
   :ensure t)
 
-;; new snippets in ~/.emacs.d/snippets
 (use-package yasnippet
   :ensure t
   :config
