@@ -38,6 +38,11 @@
 ;; lsp settings
 (setq read-process-output-max (* 1024 1024)) ;; 1mb
 
+(use-package add-node-modules-path
+  :ensure t
+  :config
+  (eval-after-load 'rjsx-mode
+                    '(add-hook 'rjsx-mode-hook #'add-node-modules-path)))
 ;;; packages
 (use-package all-the-icons
   :ensure t)
@@ -115,6 +120,8 @@
 (use-package flycheck
   :ensure t
   :config
+  (add-hook 'after-init-hook #'global-flycheck-mode)
+  (flycheck-add-mode 'javascript-eslint 'rjsx-mode)
   (setq-default flycheck-disabled-checkers
                 (append flycheck-disabled-checkers
                         '(javascript-jshint))))
