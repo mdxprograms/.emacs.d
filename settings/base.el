@@ -37,7 +37,6 @@
 
 ;; lsp settings
 (setq read-process-output-max (* 1024 1024)) ;; 1mb
-(setq lsp-prefer-capf t)
 
 ;;; packages
 (use-package all-the-icons
@@ -140,6 +139,9 @@
 (use-package helm-projectile
   :ensure t)
 
+(use-package helm-rg
+  :ensure t)
+
 (use-package helm-swoop
   :ensure t)
 
@@ -156,6 +158,9 @@
   :commands lsp-treemacs-errors-list
   :config
   (lsp-treemacs-sync-mode 1))
+
+(use-package lsp-ui
+  :ensure t)
 
 (use-package magit
   :ensure t)
